@@ -33,13 +33,15 @@ namespace Gym.Models
 
         public string? Nota2 { get; set; }
 
+        [Column("perfil")]
         public int PerfilId { get; set; }
 
         [ForeignKey(nameof(PerfilId))]
         public Perfil? Perfil { get; set; }
 
-        public string usuLogin { get; set; }
+        public string? usuLogin { get; set; } = null; // sin uso, ahora nullable como quedó en la BD
 
-        public string usuPsw { get; set; }
+        [Required]
+        public string usuPsw { get; set; } = "";
     }
 }

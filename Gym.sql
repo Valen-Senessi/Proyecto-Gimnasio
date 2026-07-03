@@ -126,7 +126,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `perfil` int(11) NOT NULL,
   `nota1` varchar(50) DEFAULT NULL,
   `nota2` varchar(50) DEFAULT NULL,
-  `usuLogin` varchar(50) NOT NULL,
+  `usuLogin` varchar(50) DEFAULT NULL,
   `usuPsw` varchar(255) NOT NULL,
   PRIMARY KEY (`Id`),
   KEY `perfil` (`perfil`),
