@@ -37,5 +37,9 @@ namespace Gym.Models
 
         [ForeignKey(nameof(PerfilId))]
         public Perfil? Perfil { get; set; }
+
+        public string usuLogin { get; set; }
+
+        public string usuPsw { get; set; }
     }
 }
