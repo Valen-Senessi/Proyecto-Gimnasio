@@ -1,0 +1,326 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>CORE FITNESS - Member Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .neon-glow {
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.4);
+        }
+        @@keyframes pulse-slow {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+        .animate-pulse-slow {
+            animation: pulse-slow 3s infinite ease-in-out;
+        }
+    </style>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#151d1d",
+                        "surface-container-low": "#ecf5f4",
+                        "error": "#ba1a1a",
+                        "inverse-on-surface": "#eaf3f2",
+                        "on-background": "#151d1d",
+                        "surface-container-lowest": "#ffffff",
+                        "on-surface-variant": "#3a4a49",
+                        "on-error-container": "#93000a",
+                        "secondary-fixed": "#61f9e9",
+                        "on-secondary": "#ffffff",
+                        "surface-tint": "#006a6a",
+                        "on-tertiary-container": "#1c6f89",
+                        "secondary-container": "#5ef6e6",
+                        "on-secondary-fixed-variant": "#005049",
+                        "inverse-surface": "#293232",
+                        "surface-variant": "#dbe4e3",
+                        "on-primary-fixed-variant": "#004f4f",
+                        "tertiary": "#0c6780",
+                        "primary-fixed": "#00fbfb",
+                        "on-primary": "#ffffff",
+                        "tertiary-container": "#c2ecff",
+                        "tertiary-fixed": "#baeaff",
+                        "on-secondary-container": "#006f66",
+                        "secondary-fixed-dim": "#3adccc",
+                        "on-primary-container": "#007272",
+                        "surface-container-high": "#e1eae9",
+                        "surface": "#f2fbfa",
+                        "background": "#f2fbfa",
+                        "secondary": "#006a62",
+                        "on-primary-fixed": "#002020",
+                        "surface-dim": "#d3dcdb",
+                        "on-tertiary": "#ffffff",
+                        "inverse-primary": "#00dddd",
+                        "outline-variant": "#b9cac9",
+                        "surface-container": "#e7f0ef",
+                        "primary": "#006a6a",
+                        "on-tertiary-fixed-variant": "#004d62",
+                        "surface-bright": "#f2fbfa",
+                        "error-container": "#ffdad6",
+                        "outline": "#6a7a7a",
+                        "on-tertiary-fixed": "#001f29",
+                        "surface-container-highest": "#dbe4e3",
+                        "primary-container": "#00ffff",
+                        "on-secondary-fixed": "#00201d",
+                        "tertiary-fixed-dim": "#89d0ed",
+                        "primary-fixed-dim": "#00dddd",
+                        "on-error": "#ffffff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "sm": "1rem",
+                        "gutter": "24px",
+                        "margin": "32px",
+                        "base": "4px",
+                        "xs": "0.5rem",
+                        "lg": "2.5rem",
+                        "xl": "4rem",
+                        "md": "1.5rem"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Inter"],
+                        "label-sm": ["Inter"],
+                        "headline-md": ["Montserrat"],
+                        "display-lg": ["Montserrat"],
+                        "headline-lg-mobile": ["Montserrat"],
+                        "headline-lg": ["Montserrat"],
+                        "body-md": ["Inter"],
+                        "body-lg": ["Inter"]
+                    },
+                    "fontSize": {
+                        "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                        "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                        "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                        "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                        "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                        "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                        "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen pb-32">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-b border-outline-variant/30 shadow-sm h-16">
+        <div class="flex items-center justify-between px-gutter h-16 max-w-full mx-auto">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-primary text-2xl" data-icon="fitness_center">fitness_center</span>
+                <h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">CORE FITNESS</h1>
+            </div>
+            <button class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container-high transition-colors active:scale-95">
+                <span class="material-symbols-outlined text-on-surface-variant" data-icon="notifications">notifications</span>
+            </button>
+        </div>
+    </header>
+    <main class="pt-20 px-4 md:px-margin max-w-5xl mx-auto space-y-6">
+        <!-- Welcome Section -->
+        <section class="py-4">
+            <h2 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-on-surface">Hola, Valen! 👋</h2>
+            <p class="text-on-surface-variant font-body-md mt-1">Listo para superar tus límites hoy?</p>
+        </section>
+        <!-- Live Capacity Card -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-[24px] p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] relative overflow-hidden group">
+                <div class="absolute top-0 left-0 w-full h-1 bg-[#87CEEB]"></div>
+                <div class="flex justify-between items-start mb-6">
+                    <div>
+                        <h3 class="font-headline-md text-lg text-on-surface mb-1">Capacidad en vivo</h3>
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary text-sm" data-icon="location_on">location_on</span>
+                            <span class="text-label-md font-label-md text-on-surface-variant">Sede Centro</span>
+                        </div>
+                    </div>
+                    <div class="bg-secondary-container/20 px-3 py-1 rounded-full flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-secondary animate-pulse"></div>
+                        <span class="text-label-sm font-label-sm text-secondary">LIVE</span>
+                    </div>
+                </div>
+                <div class="space-y-4">
+                    <!-- Dynamic Progress Bar -->
+                    <div class="w-full h-4 bg-surface-container-high rounded-full overflow-hidden">
+                        <div class="h-full bg-gradient-to-r from-secondary to-primary-container w-[65%] rounded-full neon-glow transition-all duration-1000 ease-out" style="width: 62.7559%;"></div>
+                    </div>
+
+                </div>
+            </div>
+            <!-- Quick Stats Bento Item -->
+            <div class="bg-surface-container-lowest border border-outline-variant rounded-[24px] p-6 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col justify-between">
+                <div class="flex items-center gap-3 mb-4">
+                    <div class="w-12 h-12 rounded-2xl bg-tertiary-container/30 flex items-center justify-center text-tertiary">
+                        <span class="material-symbols-outlined" data-icon="timer">timer</span>
+                    </div>
+                    <div>
+                        <p class="text-label-sm font-label-sm text-on-surface-variant">Racha de Entrenamiento</p>
+                        <p class="text-headline-md font-headline-md">12 Días</p>
+                    </div>
+                </div>
+                <div class="border-t border-outline-variant/30 pt-4">
+                    <div class="flex justify-between items-center text-label-md font-label-md mb-2">
+                        <span class="">Meta semanal</span>
+                        <span class="text-primary">4 / 5 días</span>
+                    </div>
+                    <div class="w-full h-2 bg-surface-container-high rounded-full">
+                        <div class="h-full bg-tertiary w-[80%] rounded-full"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- My Workouts Section -->
+        <section class="py-2">
+            <div class="relative overflow-hidden rounded-[24px] p-6 bg-gradient-to-br from-secondary to-tertiary text-white shadow-lg group cursor-pointer">
+                <div class="absolute top-0 right-0 -mt-4 -mr-4 w-32 h-32 bg-primary-container/20 rounded-full blur-3xl group-hover:scale-110 transition-transform duration-500"></div>
+                <div class="relative z-10 flex flex-col md:flex-row md:items-center justify-between gap-4">
+                    <div class="space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="material-symbols-outlined text-primary-fixed" data-icon="star">star</span>
+                            <span class="font-label-sm text-label-sm uppercase tracking-widest text-primary-fixed">Oferta Exclusiva</span>
+                        </div>
+                        <h3 class="font-headline-md text-xl md:text-2xl">Potencia tu Rendimiento</h3>
+                        <p class="text-body-md text-white/90 max-w-md">Obtén un 20% de descuento en nuestra nueva línea de proteínas CORE-ISO. Solo para miembros activos.</p>
+                    </div>
+                    <button class="bg-surface-container-lowest text-secondary px-6 py-3 rounded-xl font-bold text-label-md hover:bg-primary-container transition-colors active:scale-95 whitespace-nowrap">
+                        VER TIENDA
+                    </button>
+                </div>
+            </div>
+        </section><section class="space-y-4">
+            <div class="flex justify-between items-center">
+                <h3 class="font-headline-md text-headline-md text-on-surface">Mis Rutinas</h3>
+                <button class="text-primary font-label-md flex items-center gap-1 hover:underline">
+                    Ver todas <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span>
+                </button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Workout Card -->
+                <div class="group bg-surface-container-lowest border border-outline-variant rounded-[24px] overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] flex flex-col">
+                    <div class="h-48 relative overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10"></div>
+                        <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A cinematic, high-contrast shot of a modern industrial gym interior with turquoise and cyan accent lighting. A focused athlete stands in the distance among pristine weight racks and chrome plates. The atmosphere is energetic and tech-forward, with cool blue tones and heavy cinematic atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAZA3kZeatWWxjdm6LF6w-eeEEJBC9V6WjiKRQBgYXenFNyk2-477jQlgVxfEUxUnZNpn_vxkRVU-xrUU00qAL7BeaMNG30d-fPelfzR6Nti1gzHa0v3CjMaA8AK9H8Ip51TbPuPUf3PYoU1XehTMr52iVEkHZd43v4UilBWt5vlhniSN0vw5zUBMjj2kzG9qV2ocGonemuxIiVhX8qNggBLYSr-VgYCBCfG3ubuEq03EnpB3rXto9U-W441SK1chflU2nPMhrnlnZ5">
+                        <div class="absolute bottom-4 left-6 z-20">
+                            <span class="bg-primary-container/90 text-on-primary-container px-3 py-1 rounded-full text-label-sm font-label-sm backdrop-blur-sm">Día A</span>
+                        </div>
+                    </div>
+                    <div class="p-6 flex-grow flex flex-col justify-between">
+                        <div>
+                            <h4 class="font-headline-md text-xl text-on-surface mb-2">Hipertrofia - Pecho y Tríceps</h4>
+                            <p class="text-body-md text-on-surface-variant mb-4">Enfoque en desarrollo de masa muscular. Incluye press de banca, aperturas y extensiones de polea.</p>
+                            <div class="flex flex-wrap gap-2 mb-6">
+                                <span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">60 min</span>
+                                <span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">Intermedio</span>
+                                <span class="px-3 py-1 rounded-full bg-surface-container-high text-on-surface-variant text-label-sm font-label-sm">8 Ejercicios</span>
+                            </div>
+                        </div>
+                        <button class="w-full bg-gradient-to-r from-[#40E0D0] to-[#00FFFF] text-on-primary py-4 rounded-xl font-bold tracking-wide shadow-lg hover:shadow-[#00FFFF]/30 active:scale-95 transition-all duration-200 uppercase">
+                            Empezar entrenamiento
+                        </button>
+                    </div>
+                </div>
+                <!-- Secondary Workout Bento/Stack -->
+                <div class="space-y-4">
+                    <div class="bg-surface-container-lowest border border-outline-variant rounded-[24px] p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                            <img class="w-full h-full object-cover" data-alt="A close up detailed shot of gym equipment, specifically a kettlebell and yoga mat on a clean grey floor with turquoise lighting accents. High energy corporate modern aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD9WWmbeZ4EQU0ZqZg779WpZhT1_2GencUpVIND2R8xBa4hzUqgwnMKaCH0VWi_asIewRDE1a15viuVeZeptMXgu8s228gh2m1pXhX38OlTWD_6Ggtnfa7Su1d3ycIVKH4bHBULSA6lnywpa-H7jsDolSrQOdbOHOIqdvHYGxZXSQo5Y3JypraBTvgqfNvETXF1QF_LLWNWGxOojxfAVn8pvwbcyP3R1h_8JrjC8qiuPqmoUx_T2e7PyljExkf0r5e0GB4oB0dEpKcE">
+                        </div>
+                        <div class="flex-grow">
+                            <h5 class="font-bold text-on-surface">Día B: Pierna y Core</h5>
+
+                        </div>
+                        <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+                    </div>
+                    <div class="bg-surface-container-lowest border border-outline-variant rounded-[24px] p-4 flex items-center gap-4 hover:bg-surface-container-low transition-colors cursor-pointer group">
+                        <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                            <img class="w-full h-full object-cover" data-alt="Close up of a muscular back and shoulders of an athlete doing pull ups in a professional gym environment. Cyan and turquoise lighting, professional fitness photography style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuADLnQVShKznYoEH2UDWAYdH2qtqNg2KpiTfqYJWTp4EfzHIn6hPXd09WsNwX8oNuxfDWE310L_45bvdTxGPXDBhJYJhqMQoXV1RwTCXz5BKCGNZkz-EyelwNxCNOth2GSOMbetupC5Yfdtkc_Glsw6QpXYV_23u6EorLx5g9Q7CB2-3EYzTp2wOddX5IY1fdfm1m_RI_LDz9jks2FKl1kM9F1SqLTxUpS8zxd6EsXCk5AkzH4iQdf866_RmS_XHS_1AACHk6D7r7dL">
+                        </div>
+                        <div class="flex-grow">
+                            <h5 class="font-bold text-on-surface">Día C: Espalda y Bíceps</h5>
+
+                        </div>
+                        <span class="material-symbols-outlined text-outline group-hover:text-primary transition-colors" data-icon="chevron_right">chevron_right</span>
+                    </div>
+                    <!-- Promo/CTA Card -->
+                    <div class="relative rounded-[24px] overflow-hidden h-32 flex items-center p-6 text-white">
+                        <div class="absolute inset-0 bg-primary/90 mix-blend-multiply z-10"></div>
+                        <img class="absolute inset-0 w-full h-full object-cover" data-alt="Dynamic shot of a gym class with multiple people moving in sync. The background is a clean, modern gym with high tech displays. Lighting is bright with blue tints." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDDZGymzpG7TuF5X6WcG8enyETfGOviU7sUuq-mnAZ2LzRXCFW5m8wovvLwQXFtdIswgTR4PTdbe6OTjDwH1vygRiSotXTyKxXr3LeInnkjgkD2oaRYtX5ui60PDRZM3Eb9ANI3dfksNJC6K6gQQidtqZWLBLgTHpKSSQmDgYTVZjWuy2yxc1_EtThdVAsvx5VtwgNJi0nLYSzZNxk-19V_1wkDy2qwSOwca1QNMKh9NnEtUSuwo5E1XIM_xt4NrMcbkJrzpx_OEyAb">
+                        <div class="relative z-20 flex justify-between items-center w-full">
+                            <div>
+                                <p class="text-label-sm font-bold uppercase tracking-widest text-primary-fixed">Nueva Clase</p>
+                                <h5 class="text-xl font-bold">HIIT Warriors</h5>
+                            </div>
+                            <span class="material-symbols-outlined text-3xl" data-icon="add_circle">add_circle</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- BottomNavBar -->
+    <nav class="fixed bottom-0 left-0 w-full h-20 bg-surface/80 backdrop-blur-xl border-t border-outline-variant/30 flex justify-around items-center px-4 pb-safe z-50 rounded-t-xl shadow-[0px_-4px_20px_rgba(0,0,0,0.04)]">
+        <!-- Dashboard (Active) -->
+        <a class="flex flex-col items-center justify-center text-primary bg-primary-container/20 rounded-xl px-4 py-1 transition-transform duration-200 active:scale-90" href="#">
+            <span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: &quot;FILL&quot; 1;">dashboard</span>
+            <span class="font-label-sm text-label-sm">MENÚ</span>
+        </a>
+        <!-- Workouts -->
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-90" href="#">
+            <span class="material-symbols-outlined" data-icon="exercise">exercise</span>
+            <span class="font-label-sm text-label-sm">ENTRENAMIENTOS</span>
+        </a>
+        <!-- Schedule -->
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-90" href="#">
+            <span class="material-symbols-outlined" data-icon="calendar_month">calendar_month</span>
+            <span class="font-label-sm text-label-sm">CALENDARIO</span>
+        </a>
+        <!-- Profile -->
+        <a class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors duration-200 active:scale-90" href="#">
+            <span class="material-symbols-outlined" data-icon="person">person</span>
+            <span class="font-label-sm text-label-sm">PERFIL</span>
+        </a>
+    </nav>
+    <script>
+        // Simple micro-interaction for the progress bar
+        document.addEventListener('DOMContentLoaded', () => {
+            const bar = document.querySelector('.bg-gradient-to-r');
+            // Mock dynamic update
+            setInterval(() => {
+                const variation = (Math.random() * 4) - 2;
+                const currentWidth = parseFloat(bar.style.width || '65');
+                const newWidth = Math.min(Math.max(currentWidth + variation, 60), 75);
+                bar.style.width = newWidth + '%';
+            }, 5000);
+        });
+    </script>
+
+
+</body>
+</html>

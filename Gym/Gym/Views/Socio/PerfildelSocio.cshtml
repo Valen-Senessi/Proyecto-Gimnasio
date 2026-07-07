@@ -1,0 +1,383 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport">
+    <title>Perfil de Usuario - Core Fitness</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "surface-tint": "#006a6a",
+                      "secondary-container": "#5ef6e6",
+                      "on-error-container": "#93000a",
+                      "secondary": "#006a62",
+                      "primary-container": "#00ffff",
+                      "primary": "#006a6a",
+                      "on-primary-container": "#007272",
+                      "on-secondary-container": "#006f66",
+                      "on-secondary": "#ffffff",
+                      "inverse-primary": "#00dddd",
+                      "tertiary-container": "#c2ecff",
+                      "background": "#f2fbfa",
+                      "inverse-surface": "#293232",
+                      "error-container": "#ffdad6",
+                      "tertiary-fixed-dim": "#89d0ed",
+                      "on-tertiary-container": "#1c6f89",
+                      "on-secondary-fixed-variant": "#005049",
+                      "surface-container-lowest": "#ffffff",
+                      "secondary-fixed-dim": "#3adccc",
+                      "on-tertiary": "#ffffff",
+                      "surface-dim": "#d3dcdb",
+                      "outline-variant": "#b9cac9",
+                      "on-primary-fixed": "#002020",
+                      "on-primary": "#ffffff",
+                      "surface-container": "#e7f0ef",
+                      "tertiary-fixed": "#baeaff",
+                      "inverse-on-surface": "#eaf3f2",
+                      "on-surface": "#151d1d",
+                      "surface-container-low": "#ecf5f4",
+                      "on-primary-fixed-variant": "#004f4f",
+                      "surface-container-high": "#e1eae9",
+                      "on-surface-variant": "#3a4a49",
+                      "on-background": "#151d1d",
+                      "outline": "#6a7a7a",
+                      "surface-variant": "#dbe4e3",
+                      "tertiary": "#0c6780",
+                      "surface-bright": "#f2fbfa",
+                      "primary-fixed": "#00fbfb",
+                      "on-error": "#ffffff",
+                      "on-tertiary-fixed": "#001f29",
+                      "error": "#ba1a1a",
+                      "primary-fixed-dim": "#00dddd",
+                      "surface": "#f2fbfa",
+                      "secondary-fixed": "#61f9e9",
+                      "surface-container-highest": "#dbe4e3",
+                      "on-tertiary-fixed-variant": "#004d62",
+                      "on-secondary-fixed": "#00201d"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "sm": "1rem",
+                      "margin": "32px",
+                      "lg": "2.5rem",
+                      "md": "1.5rem",
+                      "gutter": "24px",
+                      "base": "4px",
+                      "xs": "0.5rem",
+                      "xl": "4rem"
+              },
+              "fontFamily": {
+                      "headline-md": ["Montserrat"],
+                      "body-md": ["Inter"],
+                      "body-lg": ["Inter"],
+                      "headline-lg": ["Montserrat"],
+                      "headline-lg-mobile": ["Montserrat"],
+                      "label-sm": ["Inter"],
+                      "label-md": ["Inter"],
+                      "display-lg": ["Montserrat"]
+              },
+              "fontSize": {
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}]
+              }
+            },
+          },
+        }
+    </script>
+    <style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+
+        .hide-scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .hide-scrollbar {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        @@keyframes slide {
+            0%
+
+        {
+            transform: translateX(0);
+        }
+
+        100% {
+            transform: translateX(-100%);
+        }
+
+        }
+
+        .animate-carousel {
+            display: flex;
+            animation: slide 25s linear infinite;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen pb-24">
+    <!-- TopAppBar -->
+    <header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm border-b border-outline-variant/30 flex items-center justify-between px-gutter h-16">
+        <button class="text-on-surface-variant active:scale-95 transition-transform">
+            <span class="material-symbols-outlined">arrow_back</span>
+        </button>
+        <h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">PERFIL</h1>
+        <button class="text-on-surface-variant active:scale-95 transition-transform">
+            <span class="material-symbols-outlined">notifications</span>
+        </button>
+    </header>
+    <main class="pt-24 px-gutter max-w-lg mx-auto space-y-8">
+        <!-- Profile Header -->
+        <section class="flex flex-col items-center text-center">
+            <div class="relative group">
+                <div class="w-32 h-32 rounded-full p-1 bg-gradient-to-tr from-primary to-secondary-container shadow-xl mb-4">
+                    <img class="w-full h-full rounded-full object-cover border-4 border-surface" data-alt="Professional studio portrait of a fit Hispanic man in his 30s named Facundo Martínez, smiling warmly. He is wearing high-performance athletic apparel in a sleek teal and charcoal color scheme. The lighting is bright and clean, characteristic of a high-end corporate modern fitness brand, with a soft-focus gym interior in the background featuring turquoise accents and minimalist exercise equipment." src="https://lh3.googleusercontent.com/aida-public/AB6AXuALkrSUN2fYlzx0Zj16khiDSMOSOpxfRAzoAkxZFb8c-Aw6B-1Z0cZ92apUGMZzLB0Zg0EUssffrFcTYCewe2fG0-QfzZ98NuMDbsMGkljEj7ZTTR9bsEfB-Ayibso_5JUu-BxBmcNVqreOAi2o4Wnu5albS8x7ZTelE7TzD3P9EWHHd8oxzgA94jCGnw0ODdgmhRkVEWPO7CVb8eru24_mRmVOT8Go5aqnBB5fXGOhtHdjtv3W4THtQYJ7O7wI5hQZNoZOeh7Xwb59">
+                </div>
+                <div class="absolute bottom-4 right-1 bg-primary text-white p-1.5 rounded-full shadow-lg border-2 border-surface">
+                    <span class="material-symbols-outlined text-sm">edit</span>
+                </div>
+            </div>
+            <h2 class="font-headline-lg-mobile text-headline-lg-mobile text-on-surface font-bold">Valentin Senessi</h2>
+            <div class="mt-1 px-4 py-1 rounded-full bg-secondary-container/30 text-on-secondary-container flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">stars</span>
+                <span class="font-label-md text-label-md uppercase tracking-wider">Socio Gold</span>
+            </div>
+        </section><section class="space-y-4">
+            <div class="glass-card rounded-[24px] p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border-t-[4px] border-primary">
+                <div class="flex justify-between items-center mb-4">
+                    <h3 class="font-headline-md text-headline-md text-on-surface">Estado de Cuota</h3>
+                    <div class="flex items-center gap-1.5 px-3 py-1 rounded-full bg-primary/10 text-primary">
+                        <span class="material-symbols-outlined text-base" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        <span class="font-label-md text-label-md uppercase">Vigente</span>
+                    </div>
+                </div>
+                <div class="flex flex-col gap-4">
+                    <div class="flex items-center gap-3 text-on-surface-variant">
+                        <span class="material-symbols-outlined">event</span>
+                        <p class="font-body-md text-body-md">Vence el 15 de Agosto</p>
+                    </div>
+                    <button class="w-full bg-primary text-white font-label-md text-label-md py-3 rounded-xl shadow-lg active:scale-95 transition-transform flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined">payments</span>
+                        PAGAR CUOTA
+                    </button>
+                </div>
+            </div>
+        </section>
+        <!-- Training History Section -->
+        <section>
+            <div class="flex items-center justify-between mb-4">
+                <h3 class="font-headline-md text-headline-md text-on-surface">Historial de Entrenamientos</h3>
+                <button class="text-primary font-label-md text-label-md flex items-center gap-1">
+                    Ver todo <span class="material-symbols-outlined text-sm">chevron_right</span>
+                </button>
+            </div>
+            <div class="flex gap-4 overflow-x-auto hide-scrollbar pb-2">
+                <!-- Training Card 1 -->
+                <div class="flex-shrink-0 w-64 glass-card rounded-[24px] p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border-t-[4px] border-[#87CEEB]">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="p-2 bg-primary-container/20 rounded-xl">
+                            <span class="material-symbols-outlined text-primary">fitness_center</span>
+                        </div>
+                        <span class="text-on-surface-variant font-label-sm text-label-sm">14 Jul</span>
+                    </div>
+                    <h4 class="font-headline-md text-headline-md text-on-surface leading-tight mb-1">Leg Day</h4>
+                    <p class="text-on-surface-variant font-label-sm text-label-sm">Intensidad: Alta • 55 min</p>
+                </div>
+                <!-- Training Card 2 -->
+                <div class="flex-shrink-0 w-64 glass-card rounded-[24px] p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border-t-[4px] border-[#87CEEB]">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="p-2 bg-primary-container/20 rounded-xl">
+                            <span class="material-symbols-outlined text-primary">bolt</span>
+                        </div>
+                        <span class="text-on-surface-variant font-label-sm text-label-sm">12 Jul</span>
+                    </div>
+                    <h4 class="font-headline-md text-headline-md text-on-surface leading-tight mb-1">Cardio Hit</h4>
+                    <p class="text-on-surface-variant font-label-sm text-label-sm">Quema: 450 kcal • 30 min</p>
+                </div>
+                <!-- Training Card 3 -->
+                <div class="flex-shrink-0 w-64 glass-card rounded-[24px] p-5 shadow-[0px_4px_20px_rgba(0,0,0,0.04)] border-t-[4px] border-[#87CEEB]">
+                    <div class="flex justify-between items-start mb-3">
+                        <div class="p-2 bg-primary-container/20 rounded-xl">
+                            <span class="material-symbols-outlined text-primary">directions_run</span>
+                        </div>
+                        <span class="text-on-surface-variant font-label-sm text-label-sm">10 Jul</span>
+                    </div>
+                    <h4 class="font-headline-md text-headline-md text-on-surface leading-tight mb-1">Outdoor Run</h4>
+                    <p class="text-on-surface-variant font-label-sm text-label-sm">Distancia: 5km • 28 min</p>
+                </div>
+            </div>
+        </section>
+        <!-- Configuration Grid -->
+        <section>
+            <h3 class="font-headline-md text-headline-md text-on-surface mb-4">Configuración</h3>
+            <div class="glass-card rounded-[24px] overflow-hidden shadow-[0px_4px_20px_rgba(0,0,0,0.04)] divide-y divide-outline-variant/30">
+                <button class="w-full flex items-center justify-between p-5 hover:bg-surface-container-high transition-colors active:bg-surface-container-highest group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-variant/50 text-primary">
+                            <span class="material-symbols-outlined">person</span>
+                        </div>
+                        <span class="font-body-lg text-body-lg text-on-surface">Mi Cuenta</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+                </button>
+                <button class="w-full flex items-center justify-between p-5 hover:bg-surface-container-high transition-colors active:bg-surface-container-highest group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-variant/50 text-primary">
+                            <span class="material-symbols-outlined">notifications_active</span>
+                        </div>
+                        <span class="font-body-lg text-body-lg text-on-surface">Notificaciones</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+                </button>
+                <button class="w-full flex items-center justify-between p-5 hover:bg-surface-container-high transition-colors active:bg-surface-container-highest group">
+                    <div class="flex items-center gap-4">
+                        <div class="w-10 h-10 flex items-center justify-center rounded-xl bg-surface-variant/50 text-primary">
+                            <span class="material-symbols-outlined">lock</span>
+                        </div>
+                        <span class="font-body-lg text-body-lg text-on-surface">Seguridad</span>
+                    </div>
+                    <span class="material-symbols-outlined text-outline-variant group-hover:translate-x-1 transition-transform">chevron_right</span>
+                </button>
+            </div>
+        </section>
+        <!-- Partner Slide (Ads Carousel) -->
+        <section class="overflow-hidden py-4 -mx-gutter relative">
+            <div class="mb-4 px-gutter">
+            </div>
+            <div class="flex w-full overflow-hidden">
+                <div class="animate-carousel whitespace-nowrap flex gap-4 pr-4">
+                    <!-- Partner Ad 1 -->
+                    <div class="flex-shrink-0 w-[280px] bg-gradient-to-br from-[#40E0D0] to-[#006a6a] rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+                        <div class="relative z-10">
+                            <p class="font-label-sm text-label-sm opacity-80 mb-1">NutriShop</p>
+                            <h4 class="font-headline-md text-headline-md font-bold mb-2">20% OFF en Suplementos</h4>
+                            <p class="font-label-sm text-label-sm underline">Ver beneficio</p>
+                        </div>
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/20 text-8xl rotate-12">nutrition</span>
+                    </div>
+                    <!-- Partner Ad 2 -->
+                    <div class="flex-shrink-0 w-[280px] bg-gradient-to-br from-tertiary to-on-tertiary-fixed-variant rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+                        <div class="relative z-10">
+                            <p class="font-label-sm text-label-sm opacity-80 mb-1">TecnoStore</p>
+                            <h4 class="font-headline-md text-headline-md font-bold mb-2">Tu nuevo celular acá</h4>
+                            <p class="font-label-sm text-label-sm underline">Explorar modelos</p>
+                        </div>
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/20 text-8xl rotate-12">smartphone</span>
+                    </div>
+                    <!-- Partner Ad 3 -->
+                    <div class="flex-shrink-0 w-[280px] bg-gradient-to-br from-secondary to-on-secondary-fixed-variant rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+                        <div class="relative z-10">
+                            <p class="font-label-sm text-label-sm opacity-80 mb-1">Hogar Inmobiliaria</p>
+                            <h4 class="font-headline-md text-headline-md font-bold mb-2">Encontrá tu próximo hogar</h4>
+                            <p class="font-label-sm text-label-sm underline">Consultar ahora</p>
+                        </div>
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/20 text-8xl rotate-12">home</span>
+                    </div>
+                </div>
+                <!-- Duplicate for seamless loop -->
+                <div class="animate-carousel whitespace-nowrap flex gap-4">
+                    <div class="flex-shrink-0 w-[280px] bg-gradient-to-br from-[#40E0D0] to-[#006a6a] rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+                        <div class="relative z-10">
+                            <p class="font-label-sm text-label-sm opacity-80 mb-1">NutriShop</p>
+                            <h4 class="font-headline-md text-headline-md font-bold mb-2">20% OFF en Suplementos</h4>
+                            <p class="font-label-sm text-label-sm underline">Ver beneficio</p>
+                        </div>
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/20 text-8xl rotate-12">nutrition</span>
+                    </div>
+                    <div class="flex-shrink-0 w-[280px] bg-gradient-to-br from-tertiary to-on-tertiary-fixed-variant rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+                        <div class="relative z-10">
+                            <p class="font-label-sm text-label-sm opacity-80 mb-1">TecnoStore</p>
+                            <h4 class="font-headline-md text-headline-md font-bold mb-2">Tu nuevo celular acá</h4>
+                            <p class="font-label-sm text-label-sm underline">Explorar modelos</p>
+                        </div>
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/20 text-8xl rotate-12">smartphone</span>
+                    </div>
+                    <div class="flex-shrink-0 w-[280px] bg-gradient-to-br from-secondary to-on-secondary-fixed-variant rounded-2xl p-6 text-white shadow-lg relative overflow-hidden">
+                        <div class="relative z-10">
+                            <p class="font-label-sm text-label-sm opacity-80 mb-1">Hogar Inmobiliaria</p>
+                            <h4 class="font-headline-md text-headline-md font-bold mb-2">Encontrá tu próximo hogar</h4>
+                            <p class="font-label-sm text-label-sm underline">Consultar ahora</p>
+                        </div>
+                        <span class="material-symbols-outlined absolute -right-4 -bottom-4 text-white/20 text-8xl rotate-12">home</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <!-- BottomNavBar -->
+    <nav class="fixed bottom-0 left-0 w-full h-20 flex justify-around items-center px-4 pb-safe bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl border-t border-outline-variant/30 shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] rounded-t-xl z-50">
+        <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="font-label-sm text-label-sm mt-1">MENÚ</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200">
+            <span class="material-symbols-outlined">exercise</span>
+            <span class="font-label-sm text-label-sm mt-1">ENTRENAMIENTOS</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary transition-colors active:scale-90 duration-200">
+            <span class="material-symbols-outlined">calendar_month</span>
+            <span class="font-label-sm text-label-sm mt-1">CALENDARIO</span>
+        </button>
+        <!-- ACTIVE TAB: Profile -->
+        <button class="flex flex-col items-center justify-center text-primary dark:text-primary-fixed-dim bg-primary-container/20 rounded-xl px-4 py-1 active:scale-90 transition-transform duration-200">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+            <span class="font-label-sm text-label-sm mt-1">PERFIL</span>
+        </button>
+    </nav>
+    <script>
+        // Micro-interaction for cards
+        document.querySelectorAll('.glass-card').forEach(card => {
+            card.addEventListener('touchstart', () => {
+                card.style.transform = 'scale(0.98)';
+            });
+            card.addEventListener('touchend', () => {
+                card.style.transform = 'scale(1)';
+            });
+        });
+
+        // Pause carousel on touch
+        const carousel = document.querySelector('.animate-carousel');
+        let isPaused = false;
+
+        document.querySelector('section.overflow-hidden').addEventListener('touchstart', () => {
+            document.querySelectorAll('.animate-carousel').forEach(el => el.style.animationPlayState = 'paused');
+        });
+        document.querySelector('section.overflow-hidden').addEventListener('touchend', () => {
+            document.querySelectorAll('.animate-carousel').forEach(el => el.style.animationPlayState = 'running');
+        });
+    </script>
+
+
+</body>
+</html>
