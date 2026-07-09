@@ -33,7 +33,7 @@ namespace Gym.Controllers
                 .Include(u => u.Perfil)
                 .FirstOrDefaultAsync(u => u.DNI == dniNumerico);
 
-            if (usuario is null )       //|| !BCrypt.Net.BCrypt.Verify(model.UsuPsw, usuario.usuPsw))
+            if ((usuario is null ) || !BCrypt.Net.BCrypt.Verify(model.UsuPsw, usuario.usuPsw))
             {
                 ModelState.AddModelError(string.Empty, "DNI o contraseña incorrectos");
                 return View(model);
@@ -56,9 +56,9 @@ namespace Gym.Controllers
 
             return usuario.Perfil?.Descripcion switch
             {
-                "Admin" => RedirectToAction("Index", "AdminDashboard"),
-                "Empleado" => RedirectToAction("Index", "EmpleadoDashboard"),
-                "Socio" => RedirectToAction("Index", "SocioDashboard"),
+                "Admin" => RedirectToAction("Index", "PaneldeAdministraciondeActivos"),
+                "Empleado" => RedirectToAction("Index", ""),
+                "Socio" => RedirectToAction("Index", "PaneldelSocioconPublicidad"),
                 _ => RedirectToAction("Index", "Home")
             };
         }
