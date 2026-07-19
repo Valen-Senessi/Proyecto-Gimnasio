@@ -1,0 +1,412 @@
+﻿<!DOCTYPE html>
+<html class="light" lang="es" style="">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>KINETIC FLOW | Employee Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "tertiary-fixed": "#baeaff",
+                      "on-primary": "#ffffff",
+                      "surface-variant": "#dbe4e3",
+                      "on-secondary-container": "#006f66",
+                      "on-primary-fixed": "#002020",
+                      "surface-container-high": "#e1eae9",
+                      "inverse-surface": "#293232",
+                      "on-primary-fixed-variant": "#004f4f",
+                      "on-secondary-fixed": "#00201d",
+                      "secondary-fixed": "#61f9e9",
+                      "on-error": "#ffffff",
+                      "secondary-container": "#5ef6e6",
+                      "inverse-on-surface": "#eaf3f2",
+                      "secondary": "#006a62",
+                      "on-error-container": "#93000a",
+                      "primary": "#006a6a",
+                      "surface-bright": "#f2fbfa",
+                      "on-tertiary-container": "#1c6f89",
+                      "on-tertiary-fixed": "#001f29",
+                      "on-surface": "#151d1d",
+                      "inverse-primary": "#00dddd",
+                      "tertiary-container": "#c2ecff",
+                      "surface-container": "#e7f0ef",
+                      "secondary-fixed-dim": "#3adccc",
+                      "outline-variant": "#b9cac9",
+                      "on-tertiary": "#ffffff",
+                      "tertiary": "#0c6780",
+                      "surface-tint": "#006a6a",
+                      "background": "#f2fbfa",
+                      "error-container": "#ffdad6",
+                      "surface-dim": "#d3dcdb",
+                      "primary-fixed": "#00fbfb",
+                      "primary-container": "#00ffff",
+                      "surface-container-lowest": "#ffffff",
+                      "on-secondary": "#ffffff",
+                      "primary-fixed-dim": "#00dddd",
+                      "on-surface-variant": "#3a4a49",
+                      "surface-container-highest": "#dbe4e3",
+                      "outline": "#6a7a7a",
+                      "on-secondary-fixed-variant": "#005049",
+                      "error": "#ba1a1a",
+                      "tertiary-fixed-dim": "#89d0ed",
+                      "surface-container-low": "#ecf5f4",
+                      "on-primary-container": "#007272",
+                      "on-background": "#151d1d",
+                      "surface": "#f2fbfa",
+                      "on-tertiary-fixed-variant": "#004d62"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "xs": "0.5rem",
+                      "xl": "4rem",
+                      "lg": "2.5rem",
+                      "base": "4px",
+                      "margin": "32px",
+                      "gutter": "24px",
+                      "md": "1.5rem",
+                      "sm": "1rem"
+              },
+              "fontFamily": {
+                      "headline-lg-mobile": ["Montserrat"],
+                      "display-lg": ["Montserrat"],
+                      "label-md": ["Inter"],
+                      "body-md": ["Inter"],
+                      "headline-md": ["Montserrat"],
+                      "label-sm": ["Inter"],
+                      "headline-lg": ["Montserrat"],
+                      "body-lg": ["Inter"]
+              },
+              "fontSize": {
+                      "headline-lg-mobile": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "display-lg": ["48px", {"lineHeight": "56px", "letterSpacing": "-0.02em", "fontWeight": "700"}],
+                      "label-md": ["14px", {"lineHeight": "20px", "letterSpacing": "0.01em", "fontWeight": "500"}],
+                      "body-md": ["16px", {"lineHeight": "24px", "fontWeight": "400"}],
+                      "headline-md": ["24px", {"lineHeight": "32px", "fontWeight": "600"}],
+                      "label-sm": ["12px", {"lineHeight": "16px", "fontWeight": "600"}],
+                      "headline-lg": ["32px", {"lineHeight": "40px", "fontWeight": "600"}],
+                      "body-lg": ["18px", {"lineHeight": "28px", "fontWeight": "400"}]
+              }
+            },
+          },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #f2fbfa;
+            font-family: 'Inter', sans-serif;
+            color: #151d1d;
+        }
+
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid #E2E8F0;
+        }
+
+        .keypad-btn {
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+            .keypad-btn:active {
+                transform: scale(0.92);
+            }
+
+        .neon-progress {
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.4);
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+    <style>
+        body {
+            min-height: max(884px, 100dvh);
+        }
+    </style>
+</head>
+<body class="min-h-screen pb-24 md:pb-0 md:pt-16">
+    <!-- Top Navigation Bar -->
+    <header class="fixed top-0 w-full z-50 bg-surface/80 dark:bg-surface-dim/80 backdrop-blur-xl shadow-sm h-16">
+        <div class="flex justify-between items-center px-sm h-full w-full max-w-7xl mx-auto">
+            <div class="flex items-center gap-2">
+
+                <h1 class="font-headline-md text-headline-md font-bold tracking-tighter text-primary">KINETIC FLOW</h1>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="hidden md:flex gap-6 items-center mr-6">
+                    <a class="text-primary font-label-md" href="#">MENÚ</a>
+                    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">MEMBRESIAS</a>
+                    <a class="text-on-surface-variant hover:text-primary transition-colors font-label-md" href="#">PAGOS</a>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container font-bold overflow-hidden border-2 border-primary">
+                    <img class="w-full h-full object-cover" data-alt="Close-up professional portrait of a fitness club employee, clean aesthetic, wearing a turquoise branded polo shirt, soft gym interior lighting, 8k resolution, cinematic style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSJLEdpTycgV2bp4NQwbeqqGfVFjTIc4aTGE9X7GQvO2f27icedJYkU2-qqgK-P4sQ8wE5DUpj7ZB9mzHRhCbm7_XbfHXCPTl6_lb9nnVdd9P1lj_YLtxZWeiJZgv14R1pPm-8L10Tzu1OZVZGP6RgGjiHE9GshROaT86wyHRkJOl60tTqk8_-w-i_anav1jsxLBqyfcoact_RDftKHk-3lMBRVltGu05HxHO8n6RN06E4D-vyIUdx7MsXx-qEGajQUhEA1kaEK23R">
+                </div>
+            </div>
+        </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 pt-8 pb-12 md:px-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+            <!-- Welcome & Capacity Section (Bento Style) -->
+            <div class="lg:col-span-12 flex flex-col md:flex-row gap-gutter mb-4">
+                <div class="flex-1 glass-panel rounded-[24px] p-md flex flex-col justify-between overflow-hidden relative border-t-4 border-[#87CEEB]">
+                    <div>
+                        <h2 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-primary">Hola, nombreusuario</h2>
+                        <p class="text-on-surface-variant mt-1 font-body-md">Panel de control de acceso y gestión.</p>
+                    </div>
+                    <div class="mt-6 flex items-center gap-4">
+                        <div class="flex items-center gap-2 px-4 py-2 bg-secondary-container/30 rounded-full">
+                            <span class="w-3 h-3 bg-primary rounded-full animate-pulse"></span>
+                            <span class="font-label-sm text-on-secondary-container">SISTEMA ACTIVO</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:w-1/3 glass-panel rounded-[24px] p-md border-t-4 border-[#87CEEB]">
+                    <div class="flex justify-between items-start mb-4">
+                        <h3 class="font-label-sm text-outline uppercase tracking-wider">Capacidad Actual</h3>
+                        <span class="material-symbols-outlined text-primary">group</span>
+                    </div>
+                    <div class="flex items-end gap-2 mb-2">
+                        <span class="text-4xl font-bold text-primary">42</span>
+                        <span class="text-on-surface-variant font-body-md pb-1">/ 80 personas</span>
+                    </div>
+                    <div class="w-full h-3 bg-surface-container rounded-full overflow-hidden mt-4">
+                        <div class="h-full bg-gradient-to-r from-primary to-primary-container neon-progress" style="width: 52.5%"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Main Input & Keypad Column -->
+            <div class="lg:col-span-7 space-y-gutter">
+                <div class="glass-panel rounded-[24px] p-md shadow-sm">
+                    <div class="mb-6">
+                        <label class="block font-label-sm text-on-surface-variant mb-2">INGRESE DNI DEL SOCIO</label>
+                        <div class="relative">
+                            <input class="w-full h-16 bg-[#F1F5F9] border-none rounded-xl px-6 text-2xl font-bold tracking-widest text-primary focus:ring-2 focus:ring-primary-container transition-all" id="dni-input" placeholder="Ej: 40321555" readonly="" type="text">
+                            <button class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-error transition-colors" onclick="clearDNI()">
+                                <span class="material-symbols-outlined">backspace</span>
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Keypad Grid -->
+                    <div class="grid grid-cols-3 gap-3">
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('1')">1</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('2')">2</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('3')">3</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('4')">4</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('5')">5</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('6')">6</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('7')">7</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('8')">8</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('9')">9</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-xl font-bold text-error" onclick="clearDNI()">C</button>
+                        <button class="keypad-btn h-20 glass-panel rounded-2xl flex items-center justify-center text-2xl font-bold hover:bg-primary-container hover:text-on-primary-container" onclick="press('0')">0</button>
+                        <button class="keypad-btn h-20 bg-primary text-white rounded-2xl flex items-center justify-center text-xl font-bold shadow-lg shadow-primary/20" onclick="validateDNI()">
+                            <span class="material-symbols-outlined">search</span>
+                        </button>
+                    </div>
+                    <div class="grid grid-cols-2 gap-4 mt-8">
+                        <button class="h-14 bg-gradient-to-r from-primary to-primary-container text-white font-bold rounded-xl active:scale-95 transition-all flex items-center justify-center gap-2 shadow-lg">
+                            <span class="material-symbols-outlined">login</span>
+                            Check-in
+                        </button>
+                        <button class="h-14 border-[1.5px] border-primary text-primary font-bold rounded-xl active:scale-95 transition-all flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined">logout</span>
+                            Check-out
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Member Feedback Column -->
+            <div class="lg:col-span-5 space-y-gutter">
+                <div class="glass-panel rounded-[24px] p-md h-full flex flex-col transition-all duration-300 opacity-50 grayscale pointer-events-none" id="member-status-card">
+                    <h3 class="font-label-sm text-on-surface-variant mb-6 flex items-center justify-between">
+                        ESTADO DEL SOCIO
+                        <span class="px-3 py-1 rounded-full text-[10px] font-bold tracking-widest bg-outline-variant text-on-surface-variant" id="status-badge">ESPERANDO DNI</span>
+                    </h3>
+                    <div class="flex items-center gap-4 mb-8">
+                        <div class="w-20 h-20 rounded-2xl bg-surface-container overflow-hidden border-2 border-surface-variant">
+                            <img class="w-full h-full object-cover" data-alt="High-quality professional studio portrait of a sporty person in gym attire, clean white background, soft teal lighting accents, sharp focus, 8k." id="member-photo" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCS9iFtAw9vADG5MVhSOOAvQNBFi9zjnXDXV6J7Py_iJGTPCauBVBaFYJ574KzALNBS2fD1yxovVoYmYCpFUFOwElDsxxiqIK-_Opwwst0sfX1DBsX1OLQgti65bzuyvFYFpQK5aR_Yu5C9GDzhSSZ2x4t-VNgCMEiHwVYCXJ5q7CfaTMKGYX6EeSRkviRRW63R3x6Gyfr6KaTziY0GmWx2Pb7FhJZ3dQ9JmpspN9ZjyAKQ7pT-WY9KmyNWe2hdVg-F2kc6vBXlOaVx">
+                        </div>
+                        <div>
+                            <h4 class="font-headline-md text-primary" id="member-name">--- ---</h4>
+                            <p class="text-on-surface-variant font-body-md" id="member-plan">Membresía: ---</p>
+                        </div>
+                    </div>
+                    <div class="flex-1 p-6 rounded-2xl bg-surface-container-low border border-outline-variant flex flex-col items-center justify-center text-center" id="payment-alert">
+                        <div class="w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center mb-4 transition-transform duration-500" id="status-icon-container">
+                            <span class="material-symbols-outlined text-4xl" id="status-icon">pending</span>
+                        </div>
+                        <h5 class="font-headline-md mb-2" id="payment-status-title">Sin Información</h5>
+                        <p class="text-on-surface-variant font-body-md max-w-[200px]" id="payment-status-desc">Ingrese un número de documento para verificar el estado de cuenta.</p>
+                    </div>
+                    <div class="mt-6 flex gap-3">
+                        <button class="flex-1 py-3 bg-secondary-container/20 text-on-secondary-container font-label-md rounded-lg flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">history</span>
+                            Historial
+                        </button>
+                        <button class="flex-1 py-3 bg-tertiary-container/20 text-on-tertiary-container font-label-md rounded-lg flex items-center justify-center gap-2">
+                            <span class="material-symbols-outlined text-sm">edit</span>
+                            Editar
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <!-- Quick Shortcuts Section -->
+            <div class="lg:col-span-12 grid grid-cols-2 md:grid-cols-4 gap-4 mt-4">
+                <div class="glass-panel rounded-[24px] p-4 flex items-center gap-4 hover:bg-primary-container/10 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-primary-container/20 flex items-center justify-center text-primary">
+                        <span class="material-symbols-outlined">person_add</span>
+                    </div>
+                    <div>
+                        <p class="font-label-sm text-outline leading-none mb-1">ACCESO</p>
+                        <p class="font-headline-md text-body-md font-bold">Nuevo Socio</p>
+                    </div>
+                </div>
+                <div class="glass-panel rounded-[24px] p-4 flex items-center gap-4 hover:bg-primary-container/10 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary">
+                        <span class="material-symbols-outlined">payments</span>
+                    </div>
+                    <div>
+                        <p class="font-label-sm text-outline leading-none mb-1">FINANZAS</p>
+                        <p class="font-headline-md text-body-md font-bold">Cobrar Cuota</p>
+                    </div>
+                </div>
+                <div class="glass-panel rounded-[24px] p-4 flex items-center gap-4 hover:bg-primary-container/10 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-tertiary-container/20 flex items-center justify-center text-tertiary">
+                        <span class="material-symbols-outlined">event_available</span>
+                    </div>
+                    <div>
+                        <p class="font-label-sm text-outline leading-none mb-1">CLASES</p>
+                        <p class="font-headline-md text-body-md font-bold">Inscripciones</p>
+                    </div>
+                </div>
+                <div class="glass-panel rounded-[24px] p-4 flex items-center gap-4 hover:bg-primary-container/10 cursor-pointer transition-colors">
+                    <div class="w-12 h-12 rounded-full bg-surface-container-highest flex items-center justify-center text-on-surface-variant">
+                        <span class="material-symbols-outlined">settings</span>
+                    </div>
+                    <div>
+                        <p class="font-label-sm text-outline leading-none mb-1">SISTEMA</p>
+                        <p class="font-headline-md text-body-md font-bold">Configuración</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- Mobile Navigation Bar -->
+    <nav class="md:hidden fixed bottom-0 left-0 w-full z-50 bg-surface/80 backdrop-blur-xl flex justify-around items-center px-sm py-xs pb-safe shadow-[0px_-4px_20px_rgba(0,0,0,0.04)] rounded-t-xl">
+        <button class="flex flex-col items-center justify-center bg-secondary-container text-on-secondary-container rounded-full px-4 py-1">
+            <span class="material-symbols-outlined">dashboard</span>
+            <span class="text-[10px] font-bold">Inicio</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+            <span class="material-symbols-outlined">group</span>
+            <span class="text-[10px] font-bold">Socios</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+            <span class="material-symbols-outlined">payments</span>
+            <span class="text-[10px] font-bold">Pagos</span>
+        </button>
+        <button class="flex flex-col items-center justify-center text-on-surface-variant px-4 py-1">
+            <span class="material-symbols-outlined">badge</span>
+            <span class="text-[10px] font-bold">Staff</span>
+        </button>
+    </nav>
+    <script>
+        const dniInput = document.getElementById('dni-input');
+        const statusCard = document.getElementById('member-status-card');
+        const statusBadge = document.getElementById('status-badge');
+        const statusIcon = document.getElementById('status-icon');
+        const statusIconContainer = document.getElementById('status-icon-container');
+        const paymentTitle = document.getElementById('payment-status-title');
+        const paymentDesc = document.getElementById('payment-status-desc');
+        const alertBox = document.getElementById('payment-alert');
+        const memberName = document.getElementById('member-name');
+        const memberPlan = document.getElementById('member-plan');
+
+        function press(num) {
+            if (dniInput.value.length < 8) {
+                dniInput.value += num;
+            }
+        }
+
+        function clearDNI() {
+            dniInput.value = '';
+            resetView();
+        }
+
+        function resetView() {
+            statusCard.classList.add('opacity-50', 'grayscale', 'pointer-events-none');
+            statusBadge.innerText = 'ESPERANDO DNI';
+            statusBadge.className = 'px-3 py-1 rounded-full text-[10px] font-bold tracking-widest bg-outline-variant text-on-surface-variant';
+            alertBox.className = 'flex-1 p-6 rounded-2xl bg-surface-container-low border border-outline-variant flex flex-col items-center justify-center text-center';
+            statusIconContainer.className = 'w-16 h-16 rounded-full bg-surface-variant flex items-center justify-center mb-4 transition-transform duration-500';
+            statusIcon.innerText = 'pending';
+            paymentTitle.innerText = 'Sin Información';
+            paymentDesc.innerText = 'Ingrese un número de documento para verificar el estado de cuenta.';
+            memberName.innerText = '--- ---';
+            memberPlan.innerText = 'Membresía: ---';
+        }
+
+        function validateDNI() {
+            const dni = dniInput.value;
+            if (dni.length < 5) return;
+
+            // Simple mock logic for demonstration
+            statusCard.classList.remove('opacity-50', 'grayscale', 'pointer-events-none');
+
+            // Randomly simulate success or pending
+            const isPaid = Math.random() > 0.3;
+
+            if (isPaid) {
+                showPaidState();
+            } else {
+                showPendingState();
+            }
+        }
+
+        function showPaidState() {
+            statusBadge.innerText = 'AL DÍA';
+            statusBadge.className = 'px-3 py-1 rounded-full text-[10px] font-bold tracking-widest bg-primary-container text-on-primary-container';
+            alertBox.className = 'flex-1 p-6 rounded-2xl bg-primary-container/10 border border-primary/20 flex flex-col items-center justify-center text-center';
+            statusIconContainer.className = 'w-20 h-20 rounded-full bg-primary text-white flex items-center justify-center mb-4 scale-110 shadow-lg shadow-primary/20 transition-all';
+            statusIcon.innerText = 'check_circle';
+            paymentTitle.innerText = 'Acceso Autorizado';
+            paymentTitle.className = 'font-headline-md mb-2 text-primary';
+            paymentDesc.innerText = 'El socio tiene su cuota al día. Vence en 15 días.';
+            memberName.innerText = 'Martin Rodriguez';
+            memberPlan.innerText = 'Membresía: Plan Premium Plus';
+        }
+
+        function showPendingState() {
+            statusBadge.innerText = 'PENDIENTE';
+            statusBadge.className = 'px-3 py-1 rounded-full text-[10px] font-bold tracking-widest bg-error-container text-on-error-container';
+            alertBox.className = 'flex-1 p-6 rounded-2xl bg-error-container/10 border border-error/20 flex flex-col items-center justify-center text-center';
+            statusIconContainer.className = 'w-20 h-20 rounded-full bg-error text-white flex items-center justify-center mb-4 scale-110 shadow-lg shadow-error/20 transition-all';
+            statusIcon.innerText = 'warning';
+            paymentTitle.innerText = 'Pago Pendiente';
+            paymentTitle.className = 'font-headline-md mb-2 text-error';
+            paymentDesc.innerText = 'La cuota venció el día 05/10. Debe regularizar su situación.';
+            memberName.innerText = 'Julian Perez';
+            memberPlan.innerText = 'Membresía: Pase Diario';
+        }
+    </script>
+
+
+
+
+
+
+</body>
+</html>
